@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Suggestions</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        #image {
+            position: absolute;
+            height: 400px;
+            width: 400px;
+
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .c0 {
+            background: url('static/up.jpg');
+        }
+
+        .c1 {
+            background: url('static/down2.jpg');
+        }
+
+        .c2 {
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="image"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        function runForever() {
+            console.log("hello")
+            $.ajax({
+                url: "/state",
+                type: "get",
+                success: function (response) {
+                    $("#image").removeClass()
+                    $("#image").addClass("c" + response);
+                    // $("#image").html(response);
+                },
+                error: function (xhr) {
+                    //Do Something to handle error
+                }
+            });
+            setTimeout(runForever, 10)
+        }
+
+        runForever()
+    </script>
+
+</body>
+
+</html>
